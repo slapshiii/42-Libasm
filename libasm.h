@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:24:01 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/04/08 10:40:26 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/04/08 12:21:11 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <errno.h>
 
 size_t		ft_strlen(const char *str);
 char		*ft_strcpy(char *dst, const char *src);
