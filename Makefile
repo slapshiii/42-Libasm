@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/04/08 11:14:16 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/04/08 11:16:50 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ fclean: clean
 
 re: fclean all
 
-try: all
-	gcc -Wall -Wextra -Werror main.c -L. -lasm -I. -o try_libasm
-	./try_libasm
+test: all
+	gcc -Wall -Wextra -Werror main.c -L. -lasm -I. -o test_libasm
+	./test_libasm
 
-.PHONY: all clean fclean try re
+.PHONY: all clean fclean re test
