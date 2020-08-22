@@ -6,9 +6,19 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/04/08 11:19:18 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/08/22 06:53:43 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+UNAME = $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+	CC = nasm
+	OS = macho64
+else
+	CC = nasm
+	OS = elf64
+endif
 
 NAME = libasm.a
 
@@ -21,28 +31,26 @@ SRCS =	ft_strlen.s \
 
 OBJS = $(SRCS:.s=.o)
 
-OS = elf64 #macho64
-
 %.o	: %.s
-	nasm -f $(OS) $< -o $@
+	$(CC) -f $(OS) $< -o $@
 
 $(NAME): $(OBJS) 
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f test_libasm
+	@rm -f $(NAME)
+	@rm -f test_libasm
 
 re: fclean all
 
 test: all
-	gcc -Wall -Wextra -Werror main.c -L. -lasm -I. -o test_libasm
-	./test_libasm
+	@gcc -Wall -Wextra -Werror main.c -L. -lasm -I. -o test_libasm
+	@./test_libasm
 
 .PHONY: all clean fclean re test
