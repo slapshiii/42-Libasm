@@ -7,20 +7,17 @@ segment .text
 
 _ft_write:
 
-	mov		r8, rdx
 	mov		rax, 0x2000004
 	syscall
-	jc		failure
-	jmp		exit
-
-failure:
-	mov		r8, rax
-	call	___error
-	mov		[rax], r8
-	mov		rax, -1
+	cmp		rax, 0
+	jl		failure
 	ret
 
-exit:
-	mov		rax, r8
+failure:
+	reg		rax
+	mov		rdx, rax
+	call	___error
+	mov		[rax], rdx
+	mov		rax, -1
 	ret
 
