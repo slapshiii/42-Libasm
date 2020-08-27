@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/08/27 09:30:21 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/08/27 10:45:46 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,8 @@ test: all
 	@gcc -g $(CFLAGS) main.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
-.PHONY: all clean fclean re test
+test2: all
+	@gcc -g $(CFLAGS) main2.c -o test_libasm -lc libasm.a
+	@./test_libasm
+
+.PHONY: all clean fclean re test test2
