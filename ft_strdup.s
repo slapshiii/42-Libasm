@@ -1,30 +1,43 @@
 
 segment .text
     global	_ft_strdup
-	extern 	___error
     extern	_ft_strlen
     extern	_malloc
+	extern	_ft_strcpy
 
-_ft_strdup:
-	push	rdi
-	call	_ft_strlen
-	inc		rax
-	push	rax
-	mov		rdi, rax
-	call	_malloc
-	cmp		rax, 0
-	jz		error_malloc
-	mov		rdi, rax
-	pop		rcx
-	pop		rsi
-	cld
-	rep		movsb
+_ft_strdup:					;rax = _ft_strdup(rdi)
+	push	rdi				;save src
+	xor		rcx, rcx
+	jmp		len_loop
+
+do_malloc:
+	inc		rcx				;i++
+	mov		rdi, rcx		;rdi = rax
+	call	_malloc			;dst = _malloc(rdi)
+	cmp		rax, 0			;dst == NULL ?
+	jz		error			;return NULL
+	pop		rsi				;rsi = src
+	xor		rcx, rcx
+	xor		rdx, rdx
+	jmp		copy_loop
+
+len_loop:
+	cmp 	BYTE [rdi + rcx], 0
+	je 		do_malloc
+	inc	 	rcx
+	jmp 	len_loop
+
+copy_loop:
+	mov		dl, BYTE [rsi + rcx]
+	mov		BYTE [rax + rcx], dl
+	cmp		dl, 0
+	je		exit
+	inc		rcx
+	jmp		copy_loop
+
+exit:
 	ret
 
-error_malloc:
-	mov		rdx, 0x0c
-	call	___error
-	;and		rax, -16
-	mov		[rax], rdx
+error:
 	xor		rax, rax
 	ret
