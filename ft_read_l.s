@@ -1,7 +1,7 @@
 
 segment .text
     global	ft_read
-    extern	___error
+    extern	___errno_location
 
 ft_read:
 	mov     rax, 0

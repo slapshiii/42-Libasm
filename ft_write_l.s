@@ -1,7 +1,7 @@
 
 segment .text
 	global	ft_write
-	extern	___error
+	extern	___errno_location
 
 ft_write:
 
