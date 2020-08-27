@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/08/27 00:51:13 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/08/27 09:30:21 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,16 @@ SRCS =	ft_strlen.s \
 
 OBJS = $(SRCS:.s=.o)
 
-%.o	: %.s
-	$(CC) -f $(OS) $< -o $@
-
-$(NAME): $(OBJS) 
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+CFLAGS = -fsanitize=address
 
 all: $(NAME)
+
+$(NAME): $(OBJS) 
+	@ar rc $(NAME) $(OBJS) libasm.h
+	@ranlib $(NAME)
+	
+%.o	: %.s
+	$(CC) -f $(OS) $< -o $@
 
 clean:
 	@rm -f $(OBJS)
@@ -50,7 +52,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	@gcc -Wall -Wextra -Werror -fsanitize=address main.c -L. -lasm -o test_libasm
+	@gcc -g $(CFLAGS) main.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 .PHONY: all clean fclean re test
