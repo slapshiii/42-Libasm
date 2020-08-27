@@ -19,8 +19,20 @@ loop:
     inc     rsi
     jmp     loop
 
-exit:
-    movzx	rax, al
-    movzx	rbx, bl
-    sub     rax, rbx
+eq:
+	mov		rax, 0
 	ret
+
+le:
+	mov		rax, -1
+	ret
+
+gr:
+	mov		rax, 1
+	ret
+
+exit:
+    cmp     al, bl
+	je		eq
+	jl		le
+	jg		gr

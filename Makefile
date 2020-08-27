@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/08/22 06:53:43 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/08/27 00:51:13 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	@gcc -Wall -Wextra -Werror main.c -L. -lasm -I. -o test_libasm
+	@gcc -Wall -Wextra -Werror -fsanitize=address main.c -L. -lasm -o test_libasm
 	@./test_libasm
 
 .PHONY: all clean fclean re test
