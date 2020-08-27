@@ -22,8 +22,9 @@ _ft_strdup:
 	ret
 
 error_malloc:
-	mov		rdx, 12
+	mov		rdx, 0x0c
 	call	___error
+	;and		rax, -16
 	mov		[rax], rdx
 	xor		rax, rax
 	ret

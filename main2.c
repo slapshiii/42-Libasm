@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 10:41:43 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/27 10:44:41 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/27 10:48:09 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int		main(void)
 {
 	char *res;
 	
+	int fd = open("./Makefile", O_RDONLY);
 	errno = 0;
 	res = ft_strdup("failed");
 	printf(" err -> %s\n", strerror(errno));
+	close(fd);
 	return (0);
 }
