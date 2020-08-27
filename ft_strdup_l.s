@@ -1,11 +1,9 @@
 
 segment .text
-    global	_ft_strdup
-    extern	_ft_strlen
-    extern	_malloc
-	extern	_ft_strcpy
+    global	ft_strdup
+    extern	malloc
 
-_ft_strdup:					;rax = _ft_strdup(rdi)
+ft_strdup:					;rax = _ft_strdup(rdi)
 	push	rdi				
 	xor		rcx, rcx
 	jmp		len_loop
@@ -13,7 +11,7 @@ _ft_strdup:					;rax = _ft_strdup(rdi)
 do_malloc:
 	inc		rcx				
 	mov		rdi, rcx		
-	call	_malloc			
+	call	malloc			
 	cmp		rax, 0			
 	jz		error			
 	pop		rsi				

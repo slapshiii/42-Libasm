@@ -19,4 +19,3 @@ failure:
 	mov		[rax], r8
 	mov		rax, -1
 	ret
-
