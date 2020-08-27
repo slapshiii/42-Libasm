@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:21:16 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 01:17:14 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 01:45:39 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,17 +125,18 @@ int main(void)
 	/*
 	** TEST READ
 	*/
-	// printf("TEST ft_read\n");
-	// READ(0, buffer, 4)
-	// READ(0, buffer, 14)
-	// READ(0, buffer, 0)
-	// READ(-1, buffer, 50)
-	// READ(fd_RD, buffer, BUFFER_SIZE - 1)
-	// READ(fd_WR, buffer, 50)
-	// printf("\n");	
+	printf("TEST ft_read\n");
+	READ(0, buffer, 4)
+	READ(0, buffer, 14)
+	READ(0, buffer, 0)
+	READ(-1, buffer, 50)
+	READ(fd_RD, buffer, BUFFER_SIZE - 1)
+	READ(fd_WR, buffer, 50)
+	printf("\n");	
 
 	free(str1);
 	free(str2);
+	free(buffer);
 	close(fd_RD);
 	close(fd_WR);
     return (0);
