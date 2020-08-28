@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 12:19:00 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 12:44:58 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,14 @@ int 	ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
+void	print_list(t_list *ptr);
+int		str_cmp(char* str1, char *str2);
+
 int		main(void)
 {
-	t_list	begin;
-	t_list	mid;
-	t_list	last;
-	t_list	tmp;
-	t_list	*ptr = &begin;
-
-	begin = (t_list){strdup("000577"), &mid};
-	mid = (t_list){strdup("000021"), &last};
-	last = (t_list){strdup("052011"), &tmp};
-	tmp = (t_list){strdup("000001"), NULL};
+	t_list	*ptr = NULL;
 	
+	// print_list(&ptr);
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("1500"));
 	printf("%s\n", ptr->data);
@@ -51,8 +46,26 @@ int		main(void)
 	printf("%s\n", ptr->data);
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	
-	ft_list_sort(&ptr, strcmp);
-	printf("sorted %s\n", ptr->data);
+	print_list(ptr);
+	ft_list_sort(&ptr, str_cmp);
+	printf("\n\n");
+	print_list(ptr);
 	
 	return (0);
+}
+
+void	print_list(t_list *ptr)
+{
+	while (ptr != NULL)
+	{
+		printf("%s\n", (char*)ptr->data);
+		ptr = ptr->next;
+	}
+}
+
+int		str_cmp(char* str1, char *str2)
+{
+	if (strcmp(str1, str2) < 0)
+		return (0);
+	return (1);
 }
