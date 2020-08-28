@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:24:01 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/22 03:33:17 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 02:53:27 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-size_t		ft_strlen(const char *str);
-char		*ft_strcpy(char *dst, const char *src);
-int			ft_strcmp(const char *s1, const char *s2);
-ssize_t		ft_write(int fd, const void *buf, size_t count);
-ssize_t		ft_read(int fd, void *buf, size_t count);
-char		*ft_strdup(const char *s1);
+typedef struct	s_list
+{
+	void	*data;
+	struct	s_list *next;
+}				t_list;
+
+size_t	ft_strlen(const char *str);
+char	*ft_strcpy(char *dst, const char *src);
+int		ft_strcmp(const char *s1, const char *s2);
+ssize_t	ft_write(int fd, const void *buf, size_t count);
+ssize_t	ft_read(int fd, void *buf, size_t count);
+char	*ft_strdup(const char *s1);
+
+void 	ft_list_push_front(t_list **begin_list, void *data);
+int 	ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 #endif

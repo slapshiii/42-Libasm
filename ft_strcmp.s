@@ -3,8 +3,7 @@ section .text
     global _ft_strcmp
 
 _ft_strcmp:
-    mov 	rax, 0
-	jmp 	loop
+	push	rsp
 
 loop:
 	mov     al, BYTE [rdi]
@@ -32,6 +31,7 @@ gr:
 	ret
 
 exit:
+	pop		rsp
     cmp     al, bl
 	je		eq
 	jl		le

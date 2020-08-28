@@ -3,6 +3,7 @@ segment .text
 	global _ft_strlen
 
 _ft_strlen:
+	push	rsp
 	mov 	rax, 0
 	jmp 	loop
 
@@ -13,4 +14,5 @@ loop:
 	jmp 	loop
 
 exit:
+	pop		rsp
 	ret

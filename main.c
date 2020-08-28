@@ -6,15 +6,9 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:21:16 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 01:45:39 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 04:21:20 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/**
- * Check for syscalls values and os in makefile before push
- * And function name -> _function or function
- *
- */
 
 #include <stdlib.h>
 #include <unistd.h>
