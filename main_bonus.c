@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 08:35:58 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 12:19:00 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,24 @@ int		main(void)
 	t_list	tmp;
 	t_list	*ptr = &begin;
 
-	begin = (t_list){strdup("first"), &mid};
-	mid = (t_list){strdup("middle"), &last};
-	last = (t_list){strdup("last"), &tmp};
-	tmp = (t_list){strdup("tmp"), NULL};
+	begin = (t_list){strdup("000577"), &mid};
+	mid = (t_list){strdup("000021"), &last};
+	last = (t_list){strdup("052011"), &tmp};
+	tmp = (t_list){strdup("000001"), NULL};
 	
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
-	ft_list_push_front(&ptr, strdup("push_front"));
+	ft_list_push_front(&ptr, strdup("1500"));
 	printf("%s\n", ptr->data);
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
-	ft_list_push_front(&ptr, strdup("push_front2"));
+	ft_list_push_front(&ptr, strdup("1594856"));
 	printf("%s\n", ptr->data);
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
-	ft_list_push_front(&ptr, strdup("push_front3"));
+	ft_list_push_front(&ptr, strdup("484848"));
 	printf("%s\n", ptr->data);
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
+	
+	ft_list_sort(&ptr, strcmp);
+	printf("sorted %s\n", ptr->data);
 	
 	return (0);
 }

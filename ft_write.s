@@ -6,10 +6,11 @@ segment .text
 	extern	___error
 
 _ft_write:
-
+	push rsp
 	mov		rax, 0x2000004
 	syscall
 	jc		failure
+	pop rsp
 	ret
 
 failure:
@@ -18,4 +19,5 @@ failure:
 	pop		r8
 	mov		[rax], r8
 	mov		rax, -1
+	pop rsp
 	ret

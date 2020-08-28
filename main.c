@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:21:16 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 04:21:20 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/28 11:45:14 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 #define STRLEN(x)			printf("\"%s\" = %ld (%ld)\n", x, ft_strlen(x), strlen(x));
 #define STRCMP(a, b)		printf("\"%s\":\"%s\" = %d (%d)\n", a, b, ft_strcmp(a, b), strcmp(a, b));
 #define STRCPY(a)			reset_str(str1, str2); ft_strcpy(str1, a); strcpy(str2, a); printf("strcmp : %d \"%s\"\n", strcmp(str1, str2), a);
-#define WRITE(f, s, x)			errno = 0; printf(":%ld (\'%s\':%d)", ft_write(f, s, x), s, x); printf(" err -> %s\n", strerror(errno));
-#define READ(f, b, x)			errno = 0; bzero(buffer, 100); r = ft_read(f, buffer, x); printf("`%s`:%ld", buffer, r); printf(" err -> %s\n", strerror(errno));
+#define WRITE(f, s, x)		errno = 0; printf(":%ld (\'%s\':%d)", ft_write(f, s, x), s, x); printf(" err -> %s\n", strerror(errno));
+#define READ(f, b, x)		errno = 0; bzero(buffer, 100); r = ft_read(f, buffer, x); printf("`%s`:%ld", buffer, r); printf(" err -> %s\n", strerror(errno));
 #define STRDUP(s)			tmp = ft_strdup(s); if(tmp){printf("strcmp : %d \'%s\'\n", strcmp(tmp, s), tmp); free(tmp);}else{printf("%s %s\n", tmp, strerror(errno));}tmp = NULL;
 
 /*
@@ -38,9 +38,6 @@ ssize_t	ft_write(int fildes, void const *buf, size_t nbyte);
 ssize_t	ft_read(int fildes, void *buf, size_t nbyte);
 char	*ft_strdup(char const *s1);
 
-// static char	str1[50];
-// static char	str2[50];
-
 void	reset_str(char *str1, char *str2);
 
 int main(void)
@@ -50,9 +47,6 @@ int main(void)
 	char	*buffer = (char*)malloc(sizeof(char) * BUFFER_SIZE);
 	char	*tmp;
 	long	r = 0;
-	//int res = strlen(NULL);
-	//char *res = strdup(NULL);
-	//printf("%d strlen null\n", res);
 
 	/*
 	** TEST STRLEN
