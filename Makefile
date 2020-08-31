@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/08/28 12:40:34 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/08/31 22:15:58 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ ifeq ($(UNAME), Darwin)
 			ft_write.s	\
 			ft_read.s	\
 			ft_strdup.s
-	SRCS_BONUS = 	ft_list_push_front_bonus.s\
+	SRCS_BONUS = 	ft_atoi_base.s\
+					ft_list_push_front_bonus.s\
 					ft_list_size_bonus.s\
 					ft_list_sort_bonus.s
 else
@@ -33,7 +34,8 @@ else
 		ft_write_l.s	\
 		ft_read_l.s	\
 		ft_strdup_l.s
-	SRCS_BONUS =	ft_list_push_front_l_bonus.s\
+	SRCS_BONUS =	ft_atoi_base_l.s\
+					ft_list_push_front_l_bonus.s\
 					ft_list_size_l_bonus.s\
 					ft_list_sort_l_bonus.s
 endif

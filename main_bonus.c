@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 12:47:57 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/08/31 23:59:19 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,29 @@ int		main(void)
 	t_list	*ptr = NULL;
 	
 	// print_list(&ptr);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("1500"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("1594856"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("484848"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("7682848"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("983848"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("005848"));
 	printf("%s\n", ptr->data);
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("2848"));
 	printf("%s\n", ptr->data);
+	ft_list_push_front(&ptr, strdup("2848"));
+	printf("%s\n", ptr->data);
+	ft_list_push_front(&ptr, strdup("00000001"));
+	printf("%s\n", ptr->data);
+	ft_list_push_front(&ptr, strdup("00000000"));
+	printf("%s\n", ptr->data);
+	ft_list_push_front(&ptr, strdup("2848"));
+	printf("%s\n", ptr->data);
+	
 	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
 	
 	
@@ -78,7 +80,7 @@ void	print_list(t_list *ptr)
 
 int		str_cmp(char* str1, char *str2)
 {
-	if (strcmp(str1, str2) < 0)
+	if (strcmp(str1, str2) > 0)
 		return (0);
 	return (1);
 }

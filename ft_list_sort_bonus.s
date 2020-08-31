@@ -11,6 +11,8 @@ _ft_list_sort:
 	push	r14				;temp1
 	push	r15				;temp2
 
+	cmp 	rdi, 0
+	jz		exit
 	mov		r8, [rdi]		;first (save)
 	mov		rdi, [rdi]		;first
 	xor		r9, r9			;next
@@ -19,7 +21,7 @@ _ft_list_sort:
 	cmp 	rsi, 0
 	jz		exit
 	
-	mov		r14, rsi		;save (cmp)
+	mov		r10, rsi		;save (cmp)
 	jmp		loop
 
 loop:
@@ -27,11 +29,11 @@ loop:
 	cmp		r9, 0
 	jz		exit
 	push	rdi
-	push	rsi
 	mov		rsi, [r9]
 	mov		rdi, [rdi]
-	call	r14
-	pop		rsi
+	push	r10
+	call	r10
+	pop		r10
 	pop		rdi
 	cmp		rax, 0
 	jz		swap
@@ -42,7 +44,8 @@ swap:						;swap rdi rsi
 	mov		r15, [rdi]
 	mov		[r9], r15
 	mov		[rdi], r14
-	jmp		go_next
+	mov		rdi, r8
+	jmp		loop
 
 go_next:
 	mov		rdi, [rdi + 8]
