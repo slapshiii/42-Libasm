@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/09/01 02:46:10 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/01 05:36:34 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,64 +27,67 @@ int 	ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
+void	clear_list(t_list *ptr);
 void	print_list(t_list *ptr);
 int		str_cmp(char* str1, char *str2);
 int		str_eq(char* str1, char *str2);
-void	free_list(char* str);
+void	free_list(void* str);
 
 int		main(void)
 {
 	t_list	*ptr = NULL;
 	char	*ref = strdup("2848");
-	
-	// print_list(&ptr);
+	int		res = 0;
 	ft_list_push_front(&ptr, strdup("1500"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("1594856"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("484848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("7682848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("983848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("005848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("00000001"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("00000000"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
+	res = ft_list_size(ptr);
 	
-	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
-	
+	printf("\n%d -- sizeof linkedlist\n\n", res);
 	
 	print_list(ptr);
 	ft_list_sort(&ptr, str_cmp);
 	printf("\n");
 	print_list(ptr);
-	ft_list_remove_if(&ptr, ref, str_eq, free_list);
+	//ft_list_remove_if(&ptr, ref, str_eq, &free_list);
 	printf("\n");
 	print_list(ptr);
+	clear_list(ptr);
 	free(ref);
+	//system("leaks test_libasm");
 	return (0);
+}
+
+void	clear_list(t_list *ptr)
+{
+	t_list *tmp;
+	while (ptr != NULL)
+	{
+		tmp = ptr;
+		ptr = ptr->next;
+		free_list(tmp->data);
+		free(tmp);
+	}
 }
 
 void	print_list(t_list *ptr)
 {
 	while (ptr != NULL)
 	{
-		printf("%s\n", (char*)ptr->data);
+		printf("%s\n", ptr->data);
 		ptr = ptr->next;
 	}
 }
 
-void	free_list(char* str)
+void	free_list(void* str)
 {
 	free(str);
 	str = NULL;

@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/01 00:28:34 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/01 04:26:57 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,10 @@ OBJS = $(SRCS:.s=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.s=.o)
 
+#CFLAGS = -Werror -Wextra -Wall
 CFLAGS += -fsanitize=address
+#CFLAGS += -g3
+
 
 all: $(NAME)
 
@@ -74,7 +77,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	@$(CC) $(CFLAGS) main.c -o test_libasm -lc libasm.a
+	@$(CC) val main.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 test2: all

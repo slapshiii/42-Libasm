@@ -39,7 +39,9 @@ _ft_list_remove_if:
 loop_first:
 	mov		rdi, [r8]
 	mov		rsi, r11
+	push	rsp
 	call	r13
+	pop		rsp
 	cmp		rax, 0
 	jnz		go_next
 	mov		rdi, r8
@@ -57,7 +59,9 @@ loop:
 	jz		exit
 	mov		rdi, [r8]
 	mov		rsi, r11
+	push 	rsp
 	call	r13
+	pop 	rsp
 	cmp		rax, 0
 	jnz		go_next
 	mov		rdi, r8
@@ -68,16 +72,20 @@ loop:
 
 remove:
 	push	r8
-	push	r12				;prev
-	push	r15				;begin_list
-	push	r11				;ref
-	push	r13				;(cmp)
-	push	r14				;(free_fct)
+	push	r12
+	push	r15
+	push	r11
+	push	r13
+	push	r14
 	push	rdi
 	mov		rdi, [rdi]
+	push 	rsp
 	call	r14
+	pop 	rsp
 	pop		rdi
+	push 	rsp
 	call	_free
+	pop 	rsp
 	pop		r14
 	pop		r13
 	pop		r11
