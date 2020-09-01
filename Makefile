@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/08/31 22:15:58 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/01 00:28:34 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ ifeq ($(UNAME), Darwin)
 	SRCS_BONUS = 	ft_atoi_base.s\
 					ft_list_push_front_bonus.s\
 					ft_list_size_bonus.s\
-					ft_list_sort_bonus.s
+					ft_list_sort_bonus.s\
+					ft_list_remove_if_bonus.s
 else
 	CC = clang
 	OS = elf64
@@ -37,7 +38,8 @@ else
 	SRCS_BONUS =	ft_atoi_base_l.s\
 					ft_list_push_front_l_bonus.s\
 					ft_list_size_l_bonus.s\
-					ft_list_sort_l_bonus.s
+					ft_list_sort_l_bonus.s\
+					ft_list_remove_if_l_bonus.s
 endif
 
 NAME = libasm.a

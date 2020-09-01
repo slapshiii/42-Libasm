@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/31 23:59:19 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/01 02:46:10 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 
 void	print_list(t_list *ptr);
 int		str_cmp(char* str1, char *str2);
+int		str_eq(char* str1, char *str2);
+void	free_list(char* str);
 
 int		main(void)
 {
 	t_list	*ptr = NULL;
+	char	*ref = strdup("2848");
 	
 	// print_list(&ptr);
 	ft_list_push_front(&ptr, strdup("1500"));
@@ -58,14 +61,17 @@ int		main(void)
 	ft_list_push_front(&ptr, strdup("2848"));
 	printf("%s\n", ptr->data);
 	
-	printf("%d -- sizeof linkedlist\n", ft_list_size(ptr));
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
 	
 	
 	print_list(ptr);
 	ft_list_sort(&ptr, str_cmp);
-	printf("\n\n");
+	printf("\n");
 	print_list(ptr);
-	
+	ft_list_remove_if(&ptr, ref, str_eq, free_list);
+	printf("\n");
+	print_list(ptr);
+	free(ref);
 	return (0);
 }
 
@@ -78,9 +84,22 @@ void	print_list(t_list *ptr)
 	}
 }
 
+void	free_list(char* str)
+{
+	free(str);
+	str = NULL;
+}
+
 int		str_cmp(char* str1, char *str2)
 {
 	if (strcmp(str1, str2) > 0)
+		return (0);
+	return (1);
+}
+
+int		str_eq(char* str1, char *str2)
+{
+	if (strcmp(str1, str2) == 0)
 		return (0);
 	return (1);
 }
