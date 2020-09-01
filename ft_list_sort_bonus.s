@@ -6,54 +6,60 @@ section	.text
 ;	int (*cmp)()		= rsi
 ;);
 
-_ft_list_sort:
-	push	rsp
-	push	r14				;temp1
-	push	r15				;temp2
-	push	r13
-	push	r12
+_ft_swap_list:		; void	swap(void **a, void **b)
+	push rbx
+	push rcx
+	mov rbx, [rdi]
+	mov rcx, [rsi]
+	mov qword [rdi], rcx
+	mov qword [rsi], rbx
+	mov rax, 0
+	pop rcx
+	pop rbx
+	ret
 
-	cmp 	rdi, 0
-	jz		exit
-	mov		r8, [rdi]		;first (save)
-	mov		rdi, [rdi]		;first
-	cmp 	rdi, 0
-	jz		exit
-	cmp 	rsi, 0
-	jz		exit
-	
-	mov		r13, rsi		;save (cmp)
-	jmp		loop
+_ft_list_sort:	; rdi = t_list **begin_list, rsi = int (*cmp)()
+	cmp	 rdi, 0
+	jz	 return
+	cmp	 rsi, 0
+	jz	 return
+	push rdi
+	mov	 r13, rsi
+	mov	 r14, [rdi]			; begin = *begin_list
+	mov	 r15, [r14 + 8]		; lnext = begin->next
+	jmp	 while_sort
 
-loop:
-	cmp		rdi, 0
-	jz		exit
-	mov		r12, [rdi + 8]
-	push	rdi
-	mov		rsi, [r12]
-	mov		rdi, [rdi]
-	call	r13
-	pop		rdi
-	cmp		rax, 0
-	jz		swap
-	jmp		go_next
+increment_list:
+	push rdx
+	push rcx
+	mov	 rdx, [r14 + 8]
+	mov	 r14, rdx
+	mov  rcx, [r15 + 8]
+	mov  r15, rcx
+	pop  rcx
+	pop  rdx
 
-swap:						;swap rdi rsi
-	mov		r14, [r12]
-	mov		r15, [rdi]
-	mov		[r12], r15
-	mov		[rdi], r14
-	mov		rdi, r8
-	jmp		loop
+while_sort:
+	cmp	 r15, 0
+	jz	 return
+	mov	 rax, r13
+	mov	 rdi, [r14]
+	mov	 rsi, [r15]
+	call rax
+	cmp	 eax, byte 0
+	jle	 increment_list
+	mov	 rdi, r14
+	mov	 rsi, r15
+	call _ft_swap_list
+	jmp	 reset_list
 
-go_next:
-	mov		rdi, [rdi + 8]
-	jmp		loop
+reset_list:
+	pop	 r11
+	mov	 r14, [r11]
+	push r11
+	mov	 r15, [r14 + 8]
+	jmp	 while_sort
 
-exit:
-	pop		r12
-	pop		r13
-	pop		r15
-	pop		r14
-	pop		rsp
+return:
+	pop	 rdi
 	ret
