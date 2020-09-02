@@ -3,28 +3,27 @@ section .text
 	global	_ft_list_push_front
 	extern	_malloc
 
+	;void 	ft_list_push_front(
+		;t_list **begin_list	= rdi,
+		;void *data 			= rsi
+	;);
+
 _ft_list_push_front:
-	push	rsp
+	push	rbp
+	push	rbx
+	sub		rsp, 8
 
-	cmp		rdi, 0
-	jz		exit
-	jmp		add_node
-
-add_node:
-	push	rdi
-	push 	rsi
+	mov		rbx, rdi
+	mov		rbp, rsi
 	mov		rdi, 16
 	call	_malloc
-	cmp		rax, 0
-	jz		exit
-	pop 	rsi
-	pop		rdi
-	mov		[rax], rsi
-	mov		rcx, [rdi]
-	mov		[rax + 8], rcx
-	mov		[rdi], rax
-	jmp		exit
+	mov		[rax], rbp
+	mov		rdx, [rbx]
+	mov		[rax + 8], rdx
+	mov		[rbx], rax
 
 exit:
-	pop		rsp
+	add		rsp, 8
+	pop		rbx
+	pop		rbp
 	ret
