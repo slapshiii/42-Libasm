@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/02 08:34:08 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/02 08:36:50 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f test_libasm
+	@rm -f test
 
 re: fclean all
 
