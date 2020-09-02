@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/02 08:32:14 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/02 08:34:08 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	@$(CC) val main.c -o test_libasm -lc libasm.a
+	@$(CC) $(CFLAGS) main.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 test2: all
