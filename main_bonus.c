@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/09/02 00:00:52 by jmercier         ###   ########.fr       */
+/*   Updated: 2020/09/02 06:58:18 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,17 @@ int		main(void)
 	t_list	*ptr = NULL;
 	char	*ref = strdup("2848");
 	
-	// print_list(&ptr);
 	ft_list_push_front(&ptr, strdup("1500"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("1594856"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("484848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("7682848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("983848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("005848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("00000001"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("00000000"));
-	printf("%s\n", ptr->data);
 	ft_list_push_front(&ptr, strdup("2848"));
-	printf("%s\n", ptr->data);
 	
 	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
 	
@@ -68,12 +56,13 @@ int		main(void)
 	ft_list_sort(&ptr, str_cmp);
 	printf("\n");
 	print_list(ptr);
-	// ft_list_remove_if(&ptr, ref, str_eq, free_list);
-	// printf("\n");
-	// print_list(ptr);
+	ft_list_remove_if(&ptr, ref, str_eq, free);
+	printf("\n");
+	print_list(ptr);
 	free_list(ptr);
 	free(ref);
-	system("leaks test_libasm");
+	// system("leaks test_libasm");
+	return (0);
 }
 
 void	print_list(t_list *ptr)

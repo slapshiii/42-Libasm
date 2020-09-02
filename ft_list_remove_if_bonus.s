@@ -10,95 +10,52 @@ section	.text
 ;);
 
 _ft_list_remove_if:
-	push	rsp
-	push	r12				;prev
-	push	r15				;begin_list
-	push	r11				;ref
-	push	r13				;(cmp)
-	push	r14				;(free_fct)
-
-	cmp		rdi, 0
-	jz		exit
-	mov		r15, rdi		;save begin_list
-	mov		rdi, [rdi]
-	cmp		rdi, 0
-	jz		exit
-	cmp		rdx, 0
-	jz		exit
-	mov		r13, rdx
-	cmp		rcx, 0
-	jz		exit
-	mov		r14, rcx
-	mov		r11, rsi
-	xor		r12, r12
-
-	mov		r8, rdi		;set first
-
-	jmp		loop_first
-
-loop_first:
-	mov		rdi, [r8]
-	mov		rsi, r11
-	push	rsp
-	call	r13
-	pop		rsp
-	cmp		rax, 0
-	jnz		go_next
-	mov		rdi, r8
-	mov		r8, [r8 + 8]
-	mov		[r15], r8
-	jmp		remove
-
-go_next:
-	mov		r12, r8
-	mov		r8, [r8 + 8]
-	jmp		loop
-
+        push    r15
+        mov     r15, rcx
+        push    r14
+        mov     r14, rdx
+        push    r13
+        mov     r13, rsi
+        push    r12
+        xor     r12d, r12d
+        push    rbp
+        push    rbx
+        mov     rbx, rdi
+        push    r8
+        mov     rbp, [rdi]
 loop:
-	cmp		r8, 0
-	jz		exit
-	mov		rdi, [r8]
-	mov		rsi, r11
-	push 	rsp
-	call	r13
-	pop 	rsp
-	cmp		rax, 0
-	jnz		go_next
-	mov		rdi, r8
-	mov		rax, [r8 + 8]
-	mov		[r12 + 8], rax
-	mov		r8, rax
-	jmp		remove
-
+        test    rbp, rbp
+        je      exit
+        xor     eax, eax
+        mov     rdi, [rbp]
+        mov     rsi, r13
+        call    r14
+        test    eax, eax
+        mov     rax, [rbp + 8]
+        jne     go_next
+        test    r12, r12
+        jne     first
+        mov     [rbx], rax
+        jmp     remove
+first:
+        mov     [r12 + 8], rax
 remove:
-	push	r8
-	push	r12
-	push	r15
-	push	r11
-	push	r13
-	push	r14
-	push	rdi
-	mov		rdi, [rdi]
-	push 	rsp
-	call	r14
-	pop 	rsp
-	pop		rdi
-	push 	rsp
-	call	_free
-	pop 	rsp
-	pop		r14
-	pop		r13
-	pop		r11
-	pop		r15
-	pop		r12
-	pop		r8
-	jmp		loop
-
+        mov     rdi, [rbp + 0]
+        call    r15
+        mov     rdi, rbp
+        call    _free
+        mov     rbp, [rbx]
+        jmp     loop
+go_next:
+        mov     r12, rbp
+        mov     rbp, rax
+        jmp     loop
 exit:
-	pop		r14
-	pop		r13
-	pop		r11
-	pop		r15
-	pop		r12
-	pop		rsp
-	ret
+        pop     rax
+        pop     rbx
+        pop     rbp
+        pop     r12
+        pop     r13
+        pop     r14
+        pop     r15
+        ret
