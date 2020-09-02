@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/09/02 06:58:18 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/02 06:59:17 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		main(void)
 	print_list(ptr);
 	free_list(ptr);
 	free(ref);
-	// system("leaks test_libasm");
+	system("leaks test_libasm");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/02 06:38:12 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/02 06:59:28 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJS = $(SRCS:.s=.o)
 OBJS_BONUS = $(SRCS_BONUS:.s=.o)
 
 #CFLAGS = -Werror -Wextra -Wall
-CFLAGS += -fsanitize=address
+#CFLAGS += -fsanitize=address
 #CFLAGS += -g3
 
 

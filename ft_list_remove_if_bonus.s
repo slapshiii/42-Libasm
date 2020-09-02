@@ -11,44 +11,44 @@ section	.text
 
 _ft_list_remove_if:
         push    r15
-        mov     r15, rcx
+        mov     r15, rcx			;free_fct
         push    r14
-        mov     r14, rdx
+        mov     r14, rdx			;cmp
         push    r13
-        mov     r13, rsi
-        push    r12
+        mov     r13, rsi			;data_ref
+        push    r12					;prev
         xor     r12d, r12d
-        push    rbp
+        push    rbp					;current
         push    rbx
-        mov     rbx, rdi
-        push    r8
+        mov     rbx, rdi			;*begin_list
+        push    r8					;stack alignement -> pop to rax in exit
         mov     rbp, [rdi]
 loop:
-        test    rbp, rbp
+        test    rbp, rbp			;current == NULL?
         je      exit
-        xor     eax, eax
-        mov     rdi, [rbp]
-        mov     rsi, r13
-        call    r14
-        test    eax, eax
-        mov     rax, [rbp + 8]
-        jne     go_next
-        test    r12, r12
-        jne     first
-        mov     [rbx], rax
+        xor     eax, eax			;reset
+        mov     rdi, [rbp]			;rdi = current->data
+        mov     rsi, r13			;rsi = data_ref
+        call    r14					;(*cmp)(rdi, rsi)
+        test    eax, eax			; == 0?
+        mov     rax, [rbp + 8]		;save current->next
+        jne     go_next				;else go_next
+        test    r12, r12			;if (prev)
+        jne     prev				;prev
+        mov     [rbx], rax			;else (*begin_list = current->next)
         jmp     remove
-first:
-        mov     [r12 + 8], rax
+prev:
+        mov     [r12 + 8], rax		;prev->next = current->next
 remove:
-        mov     rdi, [rbp + 0]
+        mov     rdi, [rbp]			;rdi = current->data
         call    r15
-        mov     rdi, rbp
+        mov     rdi, rbp			;rdi = current
         call    _free
-        mov     rbp, [rbx]
+        mov     rbp, [rbx]			;current = *begin_list
         jmp     loop
 go_next:
-        mov     r12, rbp
-        mov     rbp, rax
+        mov     r12, rbp			;prev = current
+        mov     rbp, rax			;current = current->next
         jmp     loop
 exit:
         pop     rax
