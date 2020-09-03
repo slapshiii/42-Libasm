@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/09/04 00:13:36 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/04 00:47:01 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int		main(void)
 	*/
 	int	i = 0;
 	printf("\nTEST ft_atoi_base\n");
+	ATOI_BASE(NULL, "0123456789")
+	ATOI_BASE("42", NULL)
+	ATOI_BASE("42", "")
 	ATOI_BASE("42", "0123456789")
 	ATOI_BASE("0", "0123456789")
 	ATOI_BASE("1", "0123456789")
