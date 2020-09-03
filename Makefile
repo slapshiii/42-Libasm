@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/03 21:49:39 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/04 00:00:35 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS =	ft_strlen.s \
 			ft_read.s	\
 			ft_strdup.s
 			
-SRCS_BONUS = 	ft_atoi_base.s\
+SRCS_BONUS = 	ft_atoi_base_bonus.s\
 				ft_list_push_front_bonus.s\
 				ft_list_size_bonus.s\
 				ft_list_sort_bonus.s\
@@ -42,7 +42,7 @@ OBJS = $(addprefix $(SRCS_DIR)/,$(SRCS:.s=.o))
 OBJS_BONUS = $(addprefix $(SRCS_DIR)/,$(SRCS_BONUS:.s=.o))
 
 #CFLAGS = -Werror -Wextra -Wall
-#CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=address
 #CFLAGS += -g3
 
 

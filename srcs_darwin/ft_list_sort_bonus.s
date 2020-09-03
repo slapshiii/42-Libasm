@@ -26,6 +26,8 @@ _ft_list_sort:	; rdi = t_list **begin_list, rsi = int (*cmp)()
 	push rdi
 	mov	 r13, rsi
 	mov	 r14, [rdi]			; begin = *begin_list
+	cmp	 r14, 0
+	jz	 return
 	mov	 r15, [r14 + 8]		; lnext = begin->next
 	jmp	 while_sort
 

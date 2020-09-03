@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 04:19:38 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/09/02 06:59:17 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/04 00:13:36 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 /*
 ** Function prototypes
 */
+int		ft_atoi_base(char const *str, char const *base);
 void 	ft_list_push_front(t_list **begin_list, void *data);
 int 	ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
@@ -34,34 +35,74 @@ void	free_list(t_list *to_free);
 
 int		main(void)
 {
-	t_list	*ptr = NULL;
-	char	*ref = strdup("2848");
+
+	/*
+	** TEST ATOI_BASE
+	*/
+	int	i = 0;
+	printf("\nTEST ft_atoi_base\n");
+	ATOI_BASE("42", "0123456789")
+	ATOI_BASE("0", "0123456789")
+	ATOI_BASE("1", "0123456789")
+	ATOI_BASE("1215415478", "0123456789")
+	ATOI_BASE("-0", "0123456789")
+	ATOI_BASE("-1", "0123456789")
+	ATOI_BASE("-42", "0123456789")
+	ATOI_BASE("--42", "0123456789")
+	ATOI_BASE("-+-42", "0123456789")
+	ATOI_BASE("-+-+-+42", "0123456789")
+	ATOI_BASE("-+-+-+-42", "0123456789")
+	ATOI_BASE("-1215415478", "0123456789")
+	ATOI_BASE("2147483647", "0123456789")
+	ATOI_BASE("2147483648", "0123456789")
+	ATOI_BASE("-2147483648", "0123456789")
+	ATOI_BASE("-2147483649", "0123456789")
+	ATOI_BASE("2a", "0123456789abcdef")
+	ATOI_BASE("ff", "0123456789abcdef")
+	ATOI_BASE("poney", "poney")
+	ATOI_BASE("dommage", "invalid")
+	ATOI_BASE("dommage", "aussi invalide")
+	ATOI_BASE("dommage", "+toujours")
+	ATOI_BASE("dommage", "-stop")
+	ATOI_BASE("dommage", "  \t\nca suffit")
+	ATOI_BASE("    +42", "0123456789")
+	ATOI_BASE("    -42", "0123456789")
+	ATOI_BASE("    42", "0123456789")
+	ATOI_BASE("  \t\n\r\v\f  42", "0123456789")
+	ATOI_BASE("  \t\n\r\v\f  -42", "0123456789")
+	ATOI_BASE("42FINIS !", "0123456789")
+	ATOI_BASE("-42FINIS !", "0123456789")
+	ATOI_BASE("C'est dommage42", "0123456789")
+	printf("\n");
 	
+	t_list	*ptr = NULL;
+
+	ft_list_sort(&ptr, str_cmp);
+
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
+	ft_list_push_front(&ptr, strdup("2848"));
 	ft_list_push_front(&ptr, strdup("1500"));
 	ft_list_push_front(&ptr, strdup("1594856"));
 	ft_list_push_front(&ptr, strdup("484848"));
-	ft_list_push_front(&ptr, strdup("7682848"));
 	ft_list_push_front(&ptr, strdup("983848"));
 	ft_list_push_front(&ptr, strdup("005848"));
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
 	ft_list_push_front(&ptr, strdup("2848"));
 	ft_list_push_front(&ptr, strdup("2848"));
 	ft_list_push_front(&ptr, strdup("00000001"));
 	ft_list_push_front(&ptr, strdup("00000000"));
 	ft_list_push_front(&ptr, strdup("2848"));
-	
-	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
-	
-	
 	print_list(ptr);
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
 	ft_list_sort(&ptr, str_cmp);
 	printf("\n");
 	print_list(ptr);
-	ft_list_remove_if(&ptr, ref, str_eq, free);
-	printf("\n");
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
+	ft_list_remove_if(&ptr, "2848", str_eq, free);
 	print_list(ptr);
+	printf("%d -- sizeof linkedlist\n\n", ft_list_size(ptr));
 	free_list(ptr);
-	free(ref);
-	system("leaks test_libasm");
+	//system("leaks test_libasm");
 	return (0);
 }
 

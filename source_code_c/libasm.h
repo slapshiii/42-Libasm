@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:24:01 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 02:53:27 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/04 00:09:30 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+# define ATOI_BASE(s, b)	i = ft_atoi_base(s, b); printf("`%s`[%s] = %d\n", s, b, i);
 
 typedef struct	s_list
 {
