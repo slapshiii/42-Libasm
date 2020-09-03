@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/02 08:45:31 by phnguyen         ###   ########.fr        #
+#    Updated: 2020/09/03 21:49:39 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,12 @@ OBJS_BONUS = $(addprefix $(SRCS_DIR)/,$(SRCS_BONUS:.s=.o))
 
 all: $(NAME)
 
-$(NAME): libasm.h $(OBJS)
-	@ar rc $(NAME) $(OBJS) libasm.h
+$(NAME): $(OBJS)
+	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-bonus: libasm.h $(OBJS) $(OBJS_BONUS)
-	@ar rc $(NAME) $(OBJS) $(OBJS_BONUS) libasm.h
+bonus: $(OBJS) $(OBJS_BONUS)
+	@ar rc $(NAME) $(OBJS) $(OBJS_BONUS)
 	@ranlib $(NAME)
 	
 %.o	: %.s
@@ -70,17 +70,17 @@ fclean: clean
 
 re: fclean all
 
-test: all
+test: source_code_c/libasm.h all
 	touch test
-	@$(CC) $(CFLAGS) main.c -o test_libasm -lc libasm.a
+	@$(CC) $(CFLAGS) source_code_c/main.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 test2: all
-	@$(CC) $(CFLAGS) main2.c -o test_libasm -lc libasm.a
+	@$(CC) $(CFLAGS) source_code_c/main2.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 test_bonus: bonus
-	@$(CC) $(CFLAGS) main_bonus.c -o test_libasm -lc libasm.a
+	@$(CC) $(CFLAGS) source_code_c/main_bonus.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 .PHONY: all clean fclean re test test2 test_bonus

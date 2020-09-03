@@ -3,36 +3,26 @@ section .text
     global _ft_strcmp
 
 _ft_strcmp:
-	push	rsp
-
+        xor     ecx, ecx
 loop:
-	mov     al, BYTE [rdi]
-    mov     bl, BYTE [rsi]
-    cmp     al, 0
-    je      exit
-    cmp     bl, 0
-    je      exit
-    cmp     al, bl
-    jne     exit
-    inc     rdi
-    inc     rsi
-    jmp     loop
-
-eq:
-	mov		rax, 0
-	ret
-
-le:
-	mov		rax, -1
-	ret
-
-gr:
-	mov		rax, 1
-	ret
-
+        movzx   eax, BYTE [rdi+rcx]
+        movzx   edx, BYTE [rsi+rcx]
+        test    al, al
+        je      end
+        inc     rcx
+        cmp     al, dl
+        jne     end
+        test    dl, dl
+        jne     loop
+end:
+        xor     r8, r8
+        cmp     al, dl
+        je      exit
+        sub     eax, edx
+        xor     r8, r8
+        test    eax, eax
+        setg    r8b
+        lea     r8, [r8 - 1 + r8]
 exit:
-	pop		rsp
-    cmp     al, bl
-	je		eq
-	jl		le
-	jg		gr
+        mov     rax, r8
+        ret

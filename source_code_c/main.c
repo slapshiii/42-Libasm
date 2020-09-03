@@ -6,7 +6,7 @@
 /*   By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 08:21:16 by phnguyen          #+#    #+#             */
-/*   Updated: 2020/08/28 11:45:14 by phnguyen         ###   ########.fr       */
+/*   Updated: 2020/09/03 22:50:13 by phnguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int main(void)
 	STRCMP("0123456789", "")
 	STRCMP("0000", "0000000000")
 	STRCMP("00001", "00000")
+	STRCMP("\xff\xff", "\xff")
 	printf("\n");
 	
 	/*
@@ -104,8 +105,8 @@ int main(void)
 	WRITE(1, "totototo", 8)
 	WRITE(1, "toto", 2)
 	WRITE(1, "toto", 3)
-	WRITE(1, "", 3)
-	WRITE(-1, "not writable", 5)
+	WRITE(1, "\n", 3)
+	WRITE(-1, "wrong fd", 5)
 	WRITE(fd_RD, "only read", 10)
 	WRITE(fd_WR, "Write success", 13)
 	printf("\n");
