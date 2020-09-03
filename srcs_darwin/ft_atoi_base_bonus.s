@@ -1,4 +1,5 @@
-global	_ft_atoi_base
+section .text
+	global	_ft_atoi_base
 
 ;	r8 == int i
 ;	r9 == int res
