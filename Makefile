@@ -6,7 +6,7 @@
 #    By: phnguyen <phnguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/08 08:21:44 by phnguyen          #+#    #+#              #
-#    Updated: 2020/09/04 00:46:38 by phnguyen         ###   ########.fr        #
+#    Updated: 2021/12/13 23:52:09 by phnguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,10 +73,6 @@ re: fclean all
 test: source_code_c/libasm.h all
 	touch test
 	@$(CC) $(CFLAGS) source_code_c/main.c -o test_libasm -lc libasm.a
-	@./test_libasm
-
-test2: all
-	@$(CC) $(CFLAGS) source_code_c/main2.c -o test_libasm -lc libasm.a
 	@./test_libasm
 
 test_bonus: bonus
